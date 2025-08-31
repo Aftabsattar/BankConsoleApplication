@@ -13,15 +13,14 @@ switch (choice)
             switch (result)
             {
                 case 1:
-                    customerRepositry.Create();
-                    Console.Clear();
-                    char ch = 'y';
-                    Console.WriteLine("Do you want to add another customer? (y/n)");
-                    ch = char.Parse(Console.ReadLine());
-                    if (ch == 'y' || ch == 'Y')
+                    char ch;
+                    do
                     {
-                    customerRepositry.Create();
-                    }
+                        customerRepositry.Create();
+                        Console.Clear();
+                        Console.WriteLine("Do you want to add another customer? (y/n)");
+                        ch = char.Parse(Console.ReadLine());
+                    } while (ch == 'y' || ch == 'Y'); 
                     break;
                 case 2:
                     customerRepositry.ReadAll();

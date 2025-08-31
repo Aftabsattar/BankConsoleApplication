@@ -21,7 +21,7 @@ public class CustomerRepositry : ICustomerRepositry
         Console.Write("Enter Customer Address:");
         customer.Address = Console.ReadLine();
         obj.Add(customer);
-        Console.WriteLine($"\n{customer.Name} Created successfully");
+        Console.WriteLine($"\n{customer.Name} Created successfully\nPress any key to continue...");
         Console.ReadKey();
     }
     public void ReadAll()
@@ -41,15 +41,15 @@ public class CustomerRepositry : ICustomerRepositry
         var customerToUpdate = obj.Find(c => c.ID == id);
         if (customerToUpdate != null)
         {
-            Console.WriteLine("Enter new Customer Name:");
+            Console.WriteLine("Enter Customer Name:");
             customerToUpdate.Name = Console.ReadLine();
-            Console.WriteLine("Enter new Customer Email:");
+            Console.WriteLine("Enter Customer Email:");
             customerToUpdate.Email = Console.ReadLine();
-            Console.WriteLine("Enter new Customer Phone:");
+            Console.WriteLine("Enter Customer Phone:");
             customerToUpdate.Phone = Console.ReadLine();
-            Console.WriteLine("Enter new Customer Address:");
+            Console.WriteLine("Enter Customer Address:");
             customerToUpdate.Address = Console.ReadLine();
-            Console.WriteLine("Customer Updated successfully");
+            Console.WriteLine($"{customerToUpdate.Name} Updated successfully");
         }
         else
         {
@@ -90,10 +90,10 @@ public class CustomerRepositry : ICustomerRepositry
     public int ManageCustomer()
     {
         Console.WriteLine("Press 1 for Create Customer");
-        Console.WriteLine("Press 2 for Read Customer");
-        Console.WriteLine("Press 3 for Update Customer");
-        Console.WriteLine("Press 4 for Delete Customer");
-        Console.WriteLine("Press 5 for Read All Customers");
+        Console.WriteLine("Press 2 for Read All Customer");
+        Console.WriteLine("Press 3 for Read by id of Customers");
+        Console.WriteLine("Press 4 for Update Customer");
+        Console.WriteLine("Press 5 for Delete Customer");
         Console.WriteLine("Press 6 for Exit");
         return int.Parse(Console.ReadLine());
     }
