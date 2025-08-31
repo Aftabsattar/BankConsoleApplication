@@ -6,7 +6,12 @@ namespace BankConsoleApplication.Repositry;
 public class CustomerRepositry : ICustomerRepositry
 {
   private List<Customer> obj = new List<Customer>();
-  
+  private readonly AccountRepositry _accountRepo; 
+    public CustomerRepositry(AccountRepositry accountRepo) 
+    {
+        _accountRepo = accountRepo; 
+    }
+
     public void Create()
     {
         Customer customer = new Customer();
@@ -20,6 +25,8 @@ public class CustomerRepositry : ICustomerRepositry
         customer.Phone = Console.ReadLine();
         Console.Write("Enter Customer Address:");
         customer.Address = Console.ReadLine();
+        var account = _accountRepo.Create();
+        customer.Accounts.Add(account);
         obj.Add(customer);
         Console.WriteLine($"\n{customer.Name} Created successfully\nPress any key to continue...");
         Console.ReadKey();
