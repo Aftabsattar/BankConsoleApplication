@@ -41,6 +41,22 @@ public class CustomerRepositry : ICustomerRepositry
             Console.WriteLine($"your Email is:{cust.Email}\n");
             Console.WriteLine($"your Phone number:{cust.Phone}\n");
             Console.WriteLine($"your Address is:{cust.Address}\n");
+            if(cust.Accounts.Count > 0)
+            {
+               Console.WriteLine("Accounts:");
+                foreach (var acc in cust.Accounts)
+                {
+                    Console.WriteLine($"Account Number: {acc.AccountNumber}\n");
+                    Console.WriteLine($"Account Type: {acc.AccountType}\n");
+                    Console.WriteLine($"Balance: {acc.Balance}\n");
+                    Console.WriteLine($"Created On: {acc.OnCreated}\n");
+                }
+            }
+            else
+            {
+                Console.WriteLine("No accounts found for this customer.\n");
+            }
+
         }
     }
     public void Update(int id)
@@ -74,6 +90,21 @@ public class CustomerRepositry : ICustomerRepositry
             Console.WriteLine($"your Email is:{customer.Email}\n");
             Console.WriteLine($"your Phone number:{customer.Phone}\n");
             Console.WriteLine($"your Address is:{customer.Address}\n");
+            if(customer.Accounts.Count > 0)
+            {
+               Console.WriteLine("Accounts:");
+                foreach (var acc in customer.Accounts)
+                {
+                    Console.WriteLine($"Account Number: {acc.AccountNumber}\n");
+                    Console.WriteLine($"Account Type: {acc.AccountType}\n");
+                    Console.WriteLine($"Balance: {acc.Balance}\n");
+                    Console.WriteLine($"Created On: {acc.OnCreated}\n");
+                }
+            }
+            else
+            {
+                Console.WriteLine("No accounts found for this customer.\n");
+            }
         }
         else
         {
@@ -87,6 +118,18 @@ public class CustomerRepositry : ICustomerRepositry
         {
             obj.Remove(customerToDelete);
             Console.WriteLine("Customer Deleted successfully");
+            if(customerToDelete.Accounts.Count > 0)
+            {
+                foreach (var acc in customerToDelete.Accounts)
+                {
+                    _accountRepo.Delete(acc.AccountNumber);
+                }
+            }
+            else
+            {
+                Console.WriteLine("No accounts found for this customer.\n");
+            }
+
         }
         else
         {

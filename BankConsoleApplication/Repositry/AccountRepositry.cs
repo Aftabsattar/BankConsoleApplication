@@ -16,7 +16,7 @@ public class AccountRepositry : IAccountRepositry
         Console.Write("Enter Account Type:");
         account.AccountType = Console.ReadLine();
         Console.Write("Enter Initial Balance:");
-        account.Balance = decimal.Parse(Console.ReadLine());
+        account.Balance = double.Parse(Console.ReadLine());
         account.OnCreated = DateTime.Now;
         return account;
     }
