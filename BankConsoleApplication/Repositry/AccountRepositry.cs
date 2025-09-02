@@ -92,4 +92,9 @@ public class AccountRepositry : IAccountRepositry
         int choice = int.Parse(Console.ReadLine());
         return choice;
     }
+    // new method to get account by account number
+    public Account GetAccountByNumber(int accountNumber)
+    {
+        return obj.FirstOrDefault(a => a.AccountNumber == accountNumber);
+    }
 }

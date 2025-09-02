@@ -13,7 +13,7 @@ while (true)
             {
                 customerRepositry.Create();
                 Console.Clear();
-                Console.WriteLine("Do you want to add another customer? (y/n)");
+                Console.WriteLine("Do you want to add another customer and his Account? (y/n)");
                 ch = char.Parse(Console.ReadLine());
             } while (ch == 'y' || ch == 'Y');
             break;
