@@ -139,12 +139,12 @@ public class CustomerRepositry : ICustomerRepositry
 
     public int ManageCustomer()
     {
-        Console.WriteLine("Press 1 for Create Customer");
-        Console.WriteLine("Press 2 for Read All Customer");
-        Console.WriteLine("Press 3 for Read by id of Customers");
-        Console.WriteLine("Press 4 for Update Customer");
-        Console.WriteLine("Press 5 for Delete Customer");
-        Console.WriteLine("Press 6 for Exit");
+        Console.WriteLine("1. for Create Customer");
+        Console.WriteLine("2. for Read All Customer");
+        Console.WriteLine("3. for Read by id of Customers");
+        Console.WriteLine("4. for Update Customer");
+        Console.WriteLine("5. for Delete Customer");
+        Console.WriteLine("6. for Exit");
         return int.Parse(Console.ReadLine());
     }
 }

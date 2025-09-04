@@ -5,10 +5,10 @@ namespace BankConsoleApplication.Repositry;
 
 public class AccountRepositry : IAccountRepositry
 {
+    private Account account = new Account();
     private List<Account> obj = new List<Account>();
     public Account Create()
     {
-        Account account = new Account();
         Console.Write("Enter Customer ID:");
         account.CustomerID = int.Parse(Console.ReadLine());
         Console.Write("Enter Account Number:");
@@ -20,7 +20,20 @@ public class AccountRepositry : IAccountRepositry
         account.OnCreated = DateTime.Now;
         return account;
     }
-
+    public Account CreateById(int customerId)
+    {
+        account.CustomerID = customerId;
+        Console.Write("Enter Account Number:");
+        account.AccountNumber = int.Parse(Console.ReadLine());
+        Console.Write("Enter Account Type:");
+        account.AccountType = Console.ReadLine();
+        Console.Write("Enter Initial Balance:");
+        account.Balance = double.Parse(Console.ReadLine());
+        account.OnCreated = DateTime.Now;
+        obj.Add(account);
+        Console.WriteLine($"\nAccount {account.AccountNumber} Created successfully");
+        return account;
+    }
     public void Delete(int accountNumber)
     {
         Account account = obj.FirstOrDefault(a => a.AccountNumber == accountNumber);
@@ -84,15 +97,16 @@ public class AccountRepositry : IAccountRepositry
     public int ManageAccount()
     {
         Console.WriteLine("1. Create Account");
-        Console.WriteLine("2. View All Accounts");
-        Console.WriteLine("3. View Account by Account Number");
-        Console.WriteLine("4. Update Account");
-        Console.WriteLine("5. Delete Account");
-        Console.WriteLine("6. Exit");
+        Console.WriteLine("2. Create Account Based on Customer ID");
+        Console.WriteLine("3. View All Accounts");
+        Console.WriteLine("4. View Account by Account Number");
+        Console.WriteLine("5. Update Account");
+        Console.WriteLine("6. Delete Account");
+        Console.WriteLine("7. Exit");
         int choice = int.Parse(Console.ReadLine());
         return choice;
     }
-    // new method to get account by account number
+
     public Account GetAccountByNumber(int accountNumber)
     {
         return obj.FirstOrDefault(a => a.AccountNumber == accountNumber);
