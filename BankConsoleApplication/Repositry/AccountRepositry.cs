@@ -5,10 +5,12 @@ namespace BankConsoleApplication.Repositry;
 
 public class AccountRepositry : IAccountRepositry
 {
-    private Account account = new Account();
     private List<Account> obj = new List<Account>();
+   
+
     public Account Create()
     {
+        Account account = new Account();
         Console.Write("Enter Customer ID:");
         account.CustomerID = int.Parse(Console.ReadLine());
         Console.Write("Enter Account Number:");
@@ -18,10 +20,12 @@ public class AccountRepositry : IAccountRepositry
         Console.Write("Enter Initial Balance:");
         account.Balance = double.Parse(Console.ReadLine());
         account.OnCreated = DateTime.Now;
+        obj.Add(account);
         return account;
     }
     public Account CreateById(int customerId)
     {
+        Account account = new Account();
         account.CustomerID = customerId;
         Console.Write("Enter Account Number:");
         account.AccountNumber = int.Parse(Console.ReadLine());
@@ -30,8 +34,6 @@ public class AccountRepositry : IAccountRepositry
         Console.Write("Enter Initial Balance:");
         account.Balance = double.Parse(Console.ReadLine());
         account.OnCreated = DateTime.Now;
-        obj.Add(account);
-        Console.WriteLine($"\nAccount {account.AccountNumber} Created successfully");
         return account;
     }
     public void Delete(int accountNumber)
@@ -96,13 +98,12 @@ public class AccountRepositry : IAccountRepositry
 
     public int ManageAccount()
     {
-        Console.WriteLine("1. Create Account");
-        Console.WriteLine("2. Create Account Based on Customer ID");
-        Console.WriteLine("3. View All Accounts");
-        Console.WriteLine("4. View Account by Account Number");
-        Console.WriteLine("5. Update Account");
-        Console.WriteLine("6. Delete Account");
-        Console.WriteLine("7. Exit");
+        Console.WriteLine("1. Create Account Based on Customer ID");
+        Console.WriteLine("2. View All Accounts");
+        Console.WriteLine("3. View Account by Account Number");
+        Console.WriteLine("4. Update Account");
+        Console.WriteLine("5. Delete Account");
+        Console.WriteLine("6. Exit");
         int choice = int.Parse(Console.ReadLine());
         return choice;
     }

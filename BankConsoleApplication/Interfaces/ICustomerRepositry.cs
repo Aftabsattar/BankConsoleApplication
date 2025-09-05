@@ -1,8 +1,10 @@
-﻿namespace BankConsoleApplication.Interfaces;
+﻿using BankConsoleApplication.Entities;
+
+namespace BankConsoleApplication.Interfaces;
 
 public interface ICustomerRepositry
 {
-    void Create();
+    Customer Create();
     void Read(int id);
     void ReadAll();
     void Update(int id);

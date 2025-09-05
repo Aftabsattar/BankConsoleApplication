@@ -5,14 +5,9 @@ namespace BankConsoleApplication.Repositry;
 
 public class CustomerRepositry : ICustomerRepositry
 {
-  private List<Customer> obj = new List<Customer>();
-  private readonly AccountRepositry _accountRepo; 
-    public CustomerRepositry(AccountRepositry accountRepo) 
-    {
-        _accountRepo = accountRepo; 
-    }
-
-    public void Create()
+    private List<Customer> obj = new List<Customer>();
+   
+    public Customer Create()
     {
         Customer customer = new Customer();
         Console.Write("Enter customer ID:");
@@ -25,11 +20,7 @@ public class CustomerRepositry : ICustomerRepositry
         customer.Phone = Console.ReadLine();
         Console.Write("Enter Customer Address:");
         customer.Address = Console.ReadLine();
-        var account = _accountRepo.Create();
-        customer.Accounts.Add(account);
-        obj.Add(customer);
-        Console.WriteLine($"\n{customer.Name} Created successfully\nPress any key to continue...");
-        Console.ReadKey();
+        return customer;
     }
     public void ReadAll()
     {
@@ -118,18 +109,6 @@ public class CustomerRepositry : ICustomerRepositry
         {
             obj.Remove(customerToDelete);
             Console.WriteLine("Customer Deleted successfully");
-            if(customerToDelete.Accounts.Count > 0)
-            {
-                foreach (var acc in customerToDelete.Accounts)
-                {
-                    _accountRepo.Delete(acc.AccountNumber);
-                }
-            }
-            else
-            {
-                Console.WriteLine("No accounts found for this customer.\n");
-            }
-
         }
         else
         {
@@ -146,5 +125,9 @@ public class CustomerRepositry : ICustomerRepositry
         Console.WriteLine("5. for Delete Customer");
         Console.WriteLine("6. for Exit");
         return int.Parse(Console.ReadLine());
+    }
+    public Customer FindById(int id)
+    {
+        return obj.Find(x => x.ID == id);
     }
 }
