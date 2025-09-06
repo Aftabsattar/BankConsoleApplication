@@ -1,4 +1,5 @@
-﻿namespace BankConsoleApplication.Repositry;
+﻿
+namespace BankConsoleApplication.Repositry;
 
 public class BankServices
 {
@@ -10,6 +11,17 @@ public class BankServices
         _customerRepositry = customerRepositry;
     }
 
+    public void CreateCustomerWithAccount() 
+    {
+        var customer = _customerRepositry.Create();
+        if (customer != null)
+        {
+            var account = _accountRepositry.Create();
+            customer.Accounts.Add(account);
+            if (account != null) { Console.WriteLine($"Account create for {customer.Name}successfuly"); }
+        }
+    }
+
     public void CreateAccountByCustomerId(int id)
     {
             var FindCutomer = _customerRepositry.FindById(id);
@@ -19,19 +31,25 @@ public class BankServices
                 if (account != null)
                 {
                     FindCutomer.Accounts.Add(account);
-                    Console.WriteLine($"Another {account.AccountType} for {FindCutomer.Name} created successfuly");
+                    Console.WriteLine($"Another {account.AccountType} Account for {FindCutomer.Name} created successfuly\n press any key to continue...");
+                    Console.ReadKey();
+            }
+            else
+                {
+                Console.WriteLine("Account not created successfuly");
                 }
             }
-            else { Console.WriteLine($"Account not created successfuly"); }
+            else { Console.WriteLine("Customer not found"); }
         }
-    
+
     public void Deposit(int accountNumber, double amount)
     {
         var account = _accountRepositry.GetAccountByNumber(accountNumber);
         if (account != null)
         {
             account.Balance += amount;
-            Console.WriteLine($"Deposited {amount} to account {accountNumber}. New balance: {account.Balance}");
+            Console.WriteLine($"Deposited {amount} to account {accountNumber}.\n New balance: {account.Balance}\n Press any key to continue...");
+            Console.ReadKey();
         }
         else
         {
@@ -47,7 +65,8 @@ public class BankServices
             if (account.Balance >= amount)
             {
                 account.Balance -= amount;
-                Console.WriteLine($"Withdrew {amount} from account {accountNumber}. New balance: {account.Balance}");
+                Console.WriteLine($"Withdrew {amount} from account {accountNumber}. New balance: {account.Balance}\n press any key to continue...");
+                Console.ReadKey();
             }
             else
             {
@@ -70,7 +89,8 @@ public class BankServices
             {
                 fromAccount.Balance -= amount;
                 toAccount.Balance += amount;
-                Console.WriteLine($"Transferred {amount} from account {fromAccountNumber} to account {toAccountNumber}.");
+                Console.WriteLine($"Transferred {amount} from account {fromAccountNumber} to account {toAccountNumber}.\n press any key to continue");
+                Console.ReadKey();
             }
             else
             {
@@ -89,6 +109,7 @@ public class BankServices
         if (account != null)
         {
             Console.WriteLine($"Account {accountNumber} has a balance of {account.Balance}.");
+            Console.ReadKey();
         }
         else
         {

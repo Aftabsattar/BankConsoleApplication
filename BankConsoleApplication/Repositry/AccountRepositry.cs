@@ -42,7 +42,8 @@ public class AccountRepositry : IAccountRepositry
         if (account != null)
         {
             obj.Remove(account);
-            Console.WriteLine($"\nAccount {accountNumber} Deleted successfully");
+            Console.WriteLine($"\nAccount {accountNumber} Deleted successfully \n press any key to continue...");
+            Console.ReadKey();
         }
         else
         {

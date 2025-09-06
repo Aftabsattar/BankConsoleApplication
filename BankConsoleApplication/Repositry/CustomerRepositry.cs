@@ -20,6 +20,7 @@ public class CustomerRepositry : ICustomerRepositry
         customer.Phone = Console.ReadLine();
         Console.Write("Enter Customer Address:");
         customer.Address = Console.ReadLine();
+        obj.Add(customer);
         return customer;
     }
     public void ReadAll()

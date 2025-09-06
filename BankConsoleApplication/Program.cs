@@ -11,7 +11,7 @@ while (true)
     Console.WriteLine("3. for Basic Bank Operations");
     Console.WriteLine("4. for Exit");
     Console.WriteLine("your choice:");
-    
+
     var choice = int.Parse(Console.ReadLine());
 
     switch (choice)
@@ -27,7 +27,7 @@ while (true)
                         char ch;
                         do
                         {
-                            customerRepository.Create();
+                            basicBankOperation.CreateCustomerWithAccount();
                             Console.Clear();
                             Console.WriteLine("Do you want to add another customer and his Account? (y/n)");
                             ch = char.Parse(Console.ReadLine());
@@ -64,51 +64,40 @@ while (true)
         case 2:
          int res;
             do {
-                Console.Clear();
                 res = accountRepository.ManageAccount();
                 switch (res)
                 {
                     case 1:
-                        char ch;
-                        do
-                        {
-                            accountRepository.Create();
-                            Console.Clear();
-                            Console.WriteLine("Do you want to add another Account? (y/n)");
-                            ch = char.Parse(Console.ReadLine());
-                        } while (ch == 'y' || ch == 'Y');
-                        break;
-                    case 2:
                         Console.WriteLine("Enter Customer ID to create Account:");
                         int CusID = int.Parse(Console.ReadLine());
                         basicBankOperation.CreateAccountByCustomerId(CusID);
                         break;
-                    case 3:
-                        Console.WriteLine("Enter Account Number to Delete:");
-                        int deleteAccNum = int.Parse(Console.ReadLine());
-                        accountRepository.Delete(deleteAccNum);
+                    case 2:
+                        accountRepository.ReadAll();
                         break;
-                    case 4:
+                    case 3:
                         Console.WriteLine("Enter Account Number to Read:");
                         int readAccNum = int.Parse(Console.ReadLine());
                         accountRepository.Read(readAccNum);
                         break;
-                    case 5:
-                        accountRepository.ReadAll();
-                        break;
-                    case 6:
+                    case 4:
                         Console.WriteLine("Enter Account Number to Update:");
                         int updateAccNum = int.Parse(Console.ReadLine());
                         accountRepository.Update(updateAccNum);
                         break;
-                    case 7:
+                    case 5:
+                        Console.WriteLine("Enter Account Number to Delete:");
+                        int deleteAccNum = int.Parse(Console.ReadLine());
+                        accountRepository.Delete(deleteAccNum);
+                        break;
+                    case 6:
                         Console.WriteLine("Returning to Main Menu...");
                         break;
                     default:
                         Console.WriteLine("Invalid choice");
                         break;
                 }
-            } while (res != 7);
+            } while (res != 6);
             break;
         case 3:
             int resu;
@@ -133,11 +122,20 @@ while (true)
                         basicBankOperation.Withdraw(WithaccountNumber, WithDrawAmount);
                         break;
                     case 3:
+                        Console.WriteLine("Enter source Account Number");
+                        var fromAccountNumber = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Enter destination Account number");
+                        var ToAccountNumber = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Enter amount to transfer");
+                        var amountToTransfer = double.Parse(Console.ReadLine());
+                        basicBankOperation.Transfer(fromAccountNumber, ToAccountNumber, amountToTransfer);
+                        break;
+                    case 4:
                         Console.WriteLine("Enter Account Number");
                         var InquiryaccountNumber = int.Parse(Console.ReadLine());
                         basicBankOperation.BalanceInquiry(InquiryaccountNumber);
                         break;
-                    case 4:
+                    case 5:
                         break;
                     default:
                         Console.WriteLine("invalid choice");
@@ -146,7 +144,6 @@ while (true)
                 
             }while(resu  != 5);
             break;
-
         case 4:
             Console.WriteLine("Thanks for using Bank of Punjab!");
             return; 
