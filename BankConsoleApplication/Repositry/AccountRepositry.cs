@@ -6,15 +6,14 @@ namespace BankConsoleApplication.Repositry;
 public class AccountRepositry : IAccountRepositry
 {
     private List<Account> obj = new List<Account>();
-   
+    private static int _lastAccountNumber = 1000;
 
     public Account Create()
     {
         Account account = new Account();
         Console.Write("Enter Customer ID:");
         account.CustomerID = int.Parse(Console.ReadLine());
-        Console.Write("Enter Account Number:");
-        account.AccountNumber = int.Parse(Console.ReadLine());
+        account.AccountNumber = _lastAccountNumber += 3;
         Console.Write("Enter Account Type:");
         account.AccountType = Console.ReadLine();
         Console.Write("Enter Initial Balance:");
@@ -27,8 +26,7 @@ public class AccountRepositry : IAccountRepositry
     {
         Account account = new Account();
         account.CustomerID = customerId;
-        Console.Write("Enter Account Number:");
-        account.AccountNumber = int.Parse(Console.ReadLine());
+        account.AccountNumber = _lastAccountNumber += 3; 
         Console.Write("Enter Account Type:");
         account.AccountType = Console.ReadLine();
         Console.Write("Enter Initial Balance:");

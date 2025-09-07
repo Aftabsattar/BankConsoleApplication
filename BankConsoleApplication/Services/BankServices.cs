@@ -1,5 +1,6 @@
-﻿
-namespace BankConsoleApplication.Repositry;
+﻿using BankConsoleApplication.Repositry;
+
+namespace BankConsoleApplication.Services;
 
 public class BankServices
 {
@@ -116,6 +117,7 @@ public class BankServices
             Console.WriteLine($"Account {accountNumber} not found.");
         }
     }
+
     public int ManageBasicOperation()
     {
         Console.WriteLine("1. For Deposit Money");
