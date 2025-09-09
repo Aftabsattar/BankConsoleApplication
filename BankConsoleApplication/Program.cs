@@ -1,9 +1,15 @@
 ﻿using BankConsoleApplication.Repositry;
+using BankConsoleApplication.Repositry.UserRepository;
 using BankConsoleApplication.Services;
 Console.WriteLine("****************Welcome To The Bank of Punjab*******************");
 var customerRepository = new CustomerRepositry();
 var accountRepository = new AccountRepositry();
+var userRepository = new RegisterRepository();
 var basicBankOperation = new BankServices(accountRepository, customerRepository);
+var authService = new AuthService(userRepository);
+
+authService.Register();
+authService.Login();
 
 while (true) 
 {
@@ -11,7 +17,6 @@ while (true)
     Console.WriteLine("2. for Manage Account");
     Console.WriteLine("3. for Basic Bank Operations");
     Console.WriteLine("4. for Exit");
-    Console.WriteLine("your choice:");
 
     var choice = int.Parse(Console.ReadLine());
 
