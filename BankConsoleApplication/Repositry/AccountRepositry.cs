@@ -7,15 +7,21 @@ public class AccountRepositry : IAccountRepositry
 {
     private List<Account> obj = new List<Account>();
     private static int _lastAccountNumber = 1000;
-
+     public enum accountEnum
+    {
+        current,
+        saving,
+        Business,
+    }
     public Account Create()
     {
         Account account = new Account();
         Console.Write("Enter Customer ID:");
         account.CustomerID = int.Parse(Console.ReadLine());
         account.AccountNumber = _lastAccountNumber += 3;
-        Console.Write("Enter Account Type:");
-        account.AccountType = Console.ReadLine();
+        Console.Write("0. for current:\n 1.for Saving: \n 2. for Business");
+        var type =Convert.ToInt32(Console.ReadLine());
+        account.AccountType = Convert.ToString((accountEnum)type);
         Console.Write("Enter Initial Balance:");
         account.Balance = double.Parse(Console.ReadLine());
         account.OnCreated = DateTime.Now;
